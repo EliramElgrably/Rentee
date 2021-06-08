@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    // Home page
+    <string name="title_welcome">So nice to see you, let\'s start the party!</string>
+    <string name="btn_start_rent">Start</string>
+
 </resources>

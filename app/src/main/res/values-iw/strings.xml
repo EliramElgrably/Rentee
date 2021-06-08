@@ -4,4 +4,8 @@
     <string name="title_home">בית</string>
     <string name="title_dashboard">דשבורד</string>
     <string name="title_notifications">הודעות</string>
+
+    // Home page
+    <string name="title_welcome">כיף שאתם פה, בואו נתחיל במסיבה!</string>
+    <string name="btn_start_rent">התחל הזמנה</string>
 </resources>
