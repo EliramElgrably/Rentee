@@ -10,5 +10,6 @@
 
     // Home page
     <color name="light_gray">#D3D3D3</color>
+    <color name="dark_gray">#7E7C7C</color>
     <color name="light_gray_ripple">#1FD3D3D3</color>
 </resources>

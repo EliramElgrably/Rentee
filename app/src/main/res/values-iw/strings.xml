@@ -8,4 +8,6 @@
     // Home page
     <string name="title_welcome">כיף שאתם פה, בואו נתחיל במסיבה!</string>
     <string name="btn_start_rent">התחל הזמנה</string>
+    <string name="address_hint">הקלד את כתובתך</string>
+    <string name="current_location">השתמש במיקומך הנוכחי</string>
 </resources>

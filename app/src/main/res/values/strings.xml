@@ -7,5 +7,7 @@
     // Home page
     <string name="title_welcome">So nice to see you, let\'s start the party!</string>
     <string name="btn_start_rent">Start</string>
+    <string name="address_hint">Insert your address</string>
+    <string name="current_location">Current location</string>
 
 </resources>

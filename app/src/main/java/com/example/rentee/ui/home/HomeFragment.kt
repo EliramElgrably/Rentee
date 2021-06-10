@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
         binding.btnStartOrder.setOnClickListener(View.OnClickListener {
             val direction =
-                HomeFragmentDirections.actionNavigationHomeToNavigationNewRental()
+                HomeFragmentDirections.actionNavigationHomeToNavigationNewRentAddress()
             findNavController().navigate(direction)
         })
 

@@ -10,18 +10,17 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_navigation_new_rental"
-            app:destination="@id/navigation_new_rent"
+            android:id="@+id/action_navigation_home_to_navigation_new_rent_address"
+            app:destination="@id/navigation_new_rent_address"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/navigation_home" />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_new_rent"
-        android:name="com.example.rentee.ui.home.NewRentFragment"
+        android:id="@+id/navigation_new_rent_address"
+        android:name="com.example.rentee.ui.home.NewRentAddressFragment"
         android:label="NewRentalFragment" >
     </fragment>
 </navigation>
