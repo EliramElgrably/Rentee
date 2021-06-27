@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="dd/mm/yyyy" />
+                android:text="DD/MM/YYYY" />
 
             <View
                 android:id="@+id/separation_view"
@@ -60,7 +60,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/separation_view"
-                android:text="hh:mm" />
+                android:text="HH:MM" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

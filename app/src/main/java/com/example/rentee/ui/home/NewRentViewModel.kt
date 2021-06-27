@@ -22,8 +22,10 @@ class NewRentViewModel : ViewModel() {
         get() = _isSelectItemsGone
 
     fun setAddress(address: String) {
-        val rental: Rental = Rental(null, null, address, null, null, null,null,
-        null, null)
+        val rental: Rental = Rental(
+            null, null, address, null, null, null, null,
+            null, null
+        )
         _newRental.value = rental
         //TODO: find a better way to handle it
         _isSelectItemsGone.value = true
@@ -33,11 +35,11 @@ class NewRentViewModel : ViewModel() {
         val localDateStart: LocalDate = convertLongToLT(dates.first)
         val localDateEnd: LocalDate = convertLongToLT(dates.second)
 
-            _newRental.value = Rental(
-                null, null, newRental.value?.address,
-                null, null, localDateStart, localDateEnd,
-                newRental.value?.startTime, newRental.value?.endTime
-            )
+        _newRental.value = Rental(
+            null, null, newRental.value?.address,
+            null, null, localDateStart, localDateEnd,
+            newRental.value?.startTime, newRental.value?.endTime
+        )
 
         setIsDatesValid()
     }
@@ -50,7 +52,7 @@ class NewRentViewModel : ViewModel() {
             _newRental.value = Rental(
                 null, null, newRental.value?.address,
                 null, null, newRental.value?.startDate, newRental.value?.endDate,
-                startTime , newRental.value?.endTime
+                startTime, newRental.value?.endTime
             )
         } else {
             val endTime: LocalTime = LocalTime.of(hour, minutes)
@@ -65,13 +67,15 @@ class NewRentViewModel : ViewModel() {
         setIsDatesValid()
     }
 
-    private fun setIsDatesValid(){
-        newRental.value?.let { if (it.startDate != null &&
-            it.endDate != null &&
-            it.startTime != null &&
-            it.endTime != null){
-            _isSelectItemsGone.value = false
-        }
+    private fun setIsDatesValid() {
+        newRental.value?.let {
+            if (it.startDate != null &&
+                it.endDate != null &&
+                it.startTime != null &&
+                it.endTime != null
+            ) {
+                _isSelectItemsGone.value = false
+            }
         }
     }
 }
