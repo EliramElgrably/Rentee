@@ -31,6 +31,7 @@ class NewRentDateFragment : Fragment(), NewRentalInterface {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewRentDateBinding.inflate(inflater, container, false)
+        context ?: return binding.root
 
         // Bind layout with ViewModel
         binding.viewmodel = newRentViewModel

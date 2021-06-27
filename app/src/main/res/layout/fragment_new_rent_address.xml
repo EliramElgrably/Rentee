@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.NewRentAddressFragment">
+        tools:context=".ui.home.NewRentalAddressFragment">
 
         <View
             android:id="@+id/background_view"

@@ -10,7 +10,7 @@ import androidx.navigation.navGraphViewModels
 import com.example.rentee.R
 import com.example.rentee.databinding.FragmentNewRentAddressBinding
 
-class NewRentAddressFragment : Fragment(), NewRentalInterface {
+class NewRentalAddressFragment : Fragment(), NewRentalInterface {
 
     private lateinit var binding: FragmentNewRentAddressBinding
     private val newRentViewModel: NewRentViewModel by navGraphViewModels(R.id.navigation_new_rent_address)
@@ -58,7 +58,7 @@ class NewRentAddressFragment : Fragment(), NewRentalInterface {
 
     private fun navigateToDatePage() {
         val direction =
-            NewRentAddressFragmentDirections.actionNavigationNewRentAddressToNavigationNewRentDate()
+            NewRentalAddressFragmentDirections.actionNavigationNewRentAddressToNavigationNewRentDate()
         findNavController().navigate(direction)
     }
 }

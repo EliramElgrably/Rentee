@@ -17,5 +17,6 @@
     <string name="choose_rental_date">בחר תאריכי השכרה</string>
     <string name="from">תאריך איסוף</string>
     <string name="to">תאריך החזרה</string>
+    <string name="continue_to_select_items">המשך לבחירת פריטים</string>
 
 </resources>

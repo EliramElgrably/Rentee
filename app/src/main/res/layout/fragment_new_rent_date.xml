@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.NewRentAddressFragment">
+        tools:context=".ui.home.NewRentalAddressFragment">
 
         <View
             android:id="@+id/background_view"
@@ -166,5 +166,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
+
+        <Button
+            android:id="@+id/btn_approve_dates"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="90dp"
+            android:text="@string/continue_to_select_items"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            app:backgroundTint="@color/light_gray"
+            app:iconTint="@color/black"
+            app:rippleColor="@android:color/transparent"
+            app:isButtonGone="@{viewmodel.isSelectItemsGone}"
+            app:strokeColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

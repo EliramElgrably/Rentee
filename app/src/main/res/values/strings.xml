@@ -16,5 +16,6 @@
     <string name="choose_rental_date">Choose rental dates</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="continue_to_select_items">Select items</string>
 
 </resources>

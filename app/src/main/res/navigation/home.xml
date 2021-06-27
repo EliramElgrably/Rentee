@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_new_rent_address"
-        android:name="com.example.rentee.ui.home.NewRentAddressFragment"
+        android:name="com.example.rentee.ui.home.NewRentalAddressFragment"
         android:label="NewRentalFragment">
         <action
             android:id="@+id/action_navigation_new_rent_address_to_navigation_new_rent_date"

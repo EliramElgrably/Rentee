@@ -13,14 +13,20 @@ class NewRentViewModel : ViewModel() {
 
     private val _newRental = MutableLiveData<Rental>()
 
+    private val _isSelectItemsGone = MutableLiveData<Boolean>()
+
     val newRental: LiveData<Rental>
         get() = _newRental
 
+    val isSelectItemsGone: LiveData<Boolean>
+        get() = _isSelectItemsGone
 
     fun setAddress(address: String) {
         val rental: Rental = Rental(null, null, address, null, null, null,null,
         null, null)
         _newRental.value = rental
+        //TODO: find a better way to handle it
+        _isSelectItemsGone.value = true
     }
 
     fun setDatesRange(dates: Pair<Long, Long>) {
@@ -32,6 +38,8 @@ class NewRentViewModel : ViewModel() {
                 null, null, localDateStart, localDateEnd,
                 newRental.value?.startTime, newRental.value?.endTime
             )
+
+        setIsDatesValid()
     }
 
     fun setTime(viewName: String, hour: Int, minutes: Int) {
@@ -52,6 +60,18 @@ class NewRentViewModel : ViewModel() {
                 null, null, newRental.value?.startDate, newRental.value?.endDate,
                 newRental.value?.startTime, endTime
             )
+        }
+
+        setIsDatesValid()
+    }
+
+    private fun setIsDatesValid(){
+        newRental.value?.let { if (it.startDate != null &&
+            it.endDate != null &&
+            it.startTime != null &&
+            it.endTime != null){
+            _isSelectItemsGone.value = false
+        }
         }
     }
 }
