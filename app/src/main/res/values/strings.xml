@@ -4,10 +4,17 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    // Home page
+    /////////////////////////////////////// Home page ////////////////////////////////////////////
+    // Address fragment
     <string name="title_welcome">So nice to see you, let\'s start the party!</string>
     <string name="btn_start_rent">Start</string>
     <string name="address_hint">Insert your address</string>
     <string name="current_location">Current location</string>
+
+    // Date fragment
+    <string name="selected_address">Selected address:</string>
+    <string name="choose_rental_date">Choose rental dates</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 
 </resources>

@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.navGraphViewModels
 import com.example.rentee.R
 import com.example.rentee.databinding.FragmentNewRentAddressBinding
-import com.example.rentee.databinding.FragmentNewRentBinding
 
-class NewRentAddressFragment : Fragment() {
+class NewRentAddressFragment : Fragment(), NewRentalInterface {
 
     private lateinit var binding: FragmentNewRentAddressBinding
-    private val newRentViewModel: NewRentViewModel by viewModels()
+    private val newRentViewModel: NewRentViewModel by navGraphViewModels(R.id.navigation_new_rent_address)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,13 +29,36 @@ class NewRentAddressFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.ivClose.setOnClickListener {
-            navigateToHomePage()
+            onCloseClicked()
+        }
+
+        binding.ivBack.setOnClickListener {
+            onBackClicked()
+        }
+
+        binding.btnDate.setOnClickListener {
+            if (binding.etAddress.text.isNotEmpty()) {
+                newRentViewModel.setAddress(binding.etAddress.text.toString())
+            }
+            navigateToDatePage()
         }
 
         return binding.root
     }
 
-    private fun navigateToHomePage() {
-       findNavController().navigateUp()
+    override fun onCloseClicked() {
+        val direction =
+            HomeFragmentDirections.actionGlobalNavigationHome()
+        findNavController().navigate(direction)
+    }
+
+    override fun onBackClicked() {
+        findNavController().navigateUp()
+    }
+
+    private fun navigateToDatePage() {
+        val direction =
+            NewRentAddressFragmentDirections.actionNavigationNewRentAddressToNavigationNewRentDate()
+        findNavController().navigate(direction)
     }
 }
