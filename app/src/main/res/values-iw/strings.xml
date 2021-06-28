@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rentee</string>
+    <string name="title_home">בית</string>
+    <string name="title_dashboard">דשבורד</string>
+    <string name="title_notifications">הודעות</string>
+
+    /////////////////////////////////////// Home page ////////////////////////////////////////////
+    // Address fragment
+    <string name="title_welcome">כיף שאתם פה, בואו נתחיל במסיבה!</string>
+    <string name="btn_start_rent">התחל הזמנה</string>
+    <string name="address_hint">הקלד את כתובתך</string>
+    <string name="current_location">השתמש במיקומך הנוכחי</string>
+
+    // Date fragment
+    <string name="selected_address">כתובת נבחרת:</string>
+    <string name="choose_rental_date">בחר תאריכי השכרה</string>
+    <string name="from">תאריך איסוף</string>
+    <string name="to">תאריך החזרה</string>
+    <string name="continue_to_select_items">המשך לבחירת פריטים</string>
+
+</resources>

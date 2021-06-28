@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="android:background">@drawable/button_ripple</item>
+    </style>
+</resources>
