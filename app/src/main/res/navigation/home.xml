@@ -12,10 +12,10 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_new_rent_address"
             app:destination="@id/navigation_new_rent_address"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/pop_slide_in"
+            app:popExitAnim="@anim/pop_slide_out" />
     </fragment>
 
     <fragment
@@ -25,10 +25,10 @@
         <action
             android:id="@+id/action_navigation_new_rent_address_to_navigation_new_rent_date"
             app:destination="@id/navigation_new_rent_date"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/pop_slide_in"
+            app:popExitAnim="@anim/pop_slide_out" />
     </fragment>
 
     <fragment
@@ -39,6 +39,6 @@
     <action
         android:id="@+id/action_global_navigation_home"
         app:destination="@id/navigation_home"
-        app:enterAnim="@anim/slide_in_left"
-        app:exitAnim="@anim/slide_out_right"/>
+        app:enterAnim="@anim/pop_slide_in"
+        app:exitAnim="@anim/pop_slide_out"/>
 </navigation>
