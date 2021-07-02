@@ -19,4 +19,13 @@
     <string name="to">תאריך החזרה</string>
     <string name="continue_to_select_items">המשך לבחירת פריטים</string>
 
+    /////////////////////////////////////// Uploaded Item ////////////////////////////////////////////
+    // Uploaded items list fragment
+    <string name="picture_of_uploaded_item">picture of uploaded item</string>
+    <string name="upload_new_item">upload new item</string>
+    <string name="upload_new_item_title">השכרה חדשה</string>
+    <string name="select_photo">צילום מוצר</string>
+    <string name="item_description">תיאור מוצר</string>
+    <string name="upload_item">אישור השכרה</string>
+
 </resources>

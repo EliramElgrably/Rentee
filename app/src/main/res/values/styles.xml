@@ -3,4 +3,11 @@
     <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="android:background">@drawable/button_ripple</item>
     </style>
+
+    <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.FloatingActionButton</item>
+    </style>
+    <style name="ThemeOverlay.App.FloatingActionButton" parent="">
+        <item name="colorSecondary">@android:color/holo_red_light</item>
+    </style>
 </resources>

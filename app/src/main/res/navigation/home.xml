@@ -21,7 +21,8 @@
     <fragment
         android:id="@+id/navigation_new_rent_address"
         android:name="com.example.rentee.ui.home.NewRentalAddressFragment"
-        android:label="NewRentalFragment">
+        android:label="NewRentalFragment"
+        tools:layout="@layout/fragment_new_rent_address">
         <action
             android:id="@+id/action_navigation_new_rent_address_to_navigation_new_rent_date"
             app:destination="@id/navigation_new_rent_date"
@@ -34,7 +35,8 @@
     <fragment
         android:id="@+id/navigation_new_rent_date"
         android:name="com.example.rentee.ui.home.NewRentDateFragment"
-        android:label="NewRentalFragment">
+        android:label="NewRentalFragment"
+        tools:layout="@layout/fragment_new_rent_date">
     </fragment>
     <action
         android:id="@+id/action_global_navigation_home"
