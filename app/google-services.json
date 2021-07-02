@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "43796212322",
+    "project_id": "rentee-264dc",
+    "storage_bucket": "rentee-264dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43796212322:android:5b3cc8ca03116be0dcbf3b",
+        "android_client_info": {
+          "package_name": "com.example.rentee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43796212322-1ojbbbaas6l4gqolkfpqboshsl536kpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rentee",
+            "certificate_hash": "ed2abcd2b90952dda8c2f753134a2328993cd076"
+          }
+        },
+        {
+          "client_id": "43796212322-j1i945f6744ek4r0f4ueodd7cc1ehc9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaYbEUhVV7n9eM86dYVbnvzHn4E8ZdoJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43796212322-j1i945f6744ek4r0f4ueodd7cc1ehc9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
