@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Rentee</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">My Items</string>
     <string name="title_notifications">Notifications</string>
 
     /////////////////////////////////////// Home page ////////////////////////////////////////////
@@ -17,5 +17,15 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="continue_to_select_items">Select items</string>
+
+
+    /////////////////////////////////////// Uploaded Item ////////////////////////////////////////////
+    // Uploaded items list fragment
+    <string name="picture_of_uploaded_item">picture of uploaded item</string>
+    <string name="upload_new_item">upload new item</string>
+    <string name="upload_new_item_title">Upload New Item</string>
+    <string name="select_photo">Select photo</string>
+    <string name="item_description">Description</string>
+    <string name="upload_item">upload item</string>
 
 </resources>

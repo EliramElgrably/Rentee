@@ -1,0 +1,121 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.rentee.ui.uploadedItems.UploadNewItemViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_baseline_close_32"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_upload_new_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_new_item_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_close"/>
+
+        <ImageView
+            android:id="@+id/iv_picture_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_baseline_photo_library_24"
+            app:layout_constraintTop_toBottomOf="@+id/iv_close"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/iv_picture_icon"
+            app:layout_constraintBottom_toBottomOf="@id/iv_picture_icon"
+            android:text="@string/select_photo"
+            android:layout_marginStart="10dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="0dp"
+            android:background="@drawable/rectangle_shape"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toBottomOf="@+id/iv_picture_icon"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"/>
+
+        <ImageView
+            android:id="@+id/iv_description_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_baseline_create_24"
+            app:layout_constraintTop_toBottomOf="@+id/iv_item_image"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/iv_description_icon"
+            app:layout_constraintBottom_toBottomOf="@id/iv_description_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_description_icon"
+            android:hint="@string/item_description"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="10dp"/>
+
+        <Button
+            android:id="@+id/btn_approve_dates"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="90dp"
+            android:text="@string/upload_item"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            app:backgroundTint="@color/light_gray"
+            app:iconTint="@color/black"
+            app:rippleColor="@android:color/transparent"
+            app:strokeColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

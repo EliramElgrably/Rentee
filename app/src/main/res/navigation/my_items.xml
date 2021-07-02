@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_items"
+    app:startDestination="@+id/navigation_uploaded_list">
+    <fragment
+        android:id="@+id/navigation_uploaded_list"
+        android:name="com.example.rentee.ui.uploadedItems.UploadedItemsListFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_items_upload_list" >
+        <action
+            android:id="@+id/action_navigation_uploaded_list_to_uploadNewItemFragment"
+            app:destination="@id/uploadNewItemFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadNewItemFragment"
+        android:name="com.example.rentee.ui.uploadedItems.UploadNewItemFragment"
+        android:label="UploadNewItemFragment"
+        tools:layout="@layout/fragment_upload_new_item" />
+</navigation>

@@ -74,7 +74,7 @@
                 android:enabled="false"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                tools:text="@{viewmodel.newRental.address}" />
+                android:text="@{viewmodel.newRental.address}" />
         </RelativeLayout>
 
         <View
