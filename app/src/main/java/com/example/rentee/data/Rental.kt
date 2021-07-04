@@ -9,10 +9,10 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 
 @Entity(tableName = "rentals")
-data class Rental(
+data class Rental constructor(
     @PrimaryKey
-    @ColumnInfo(name = "rental_id") val rentalId: String?,
-    @ColumnInfo(name = "user_creator_id") val userCreatorId: String?,
+    @ColumnInfo(name = "rental_id") val rentalId: Int,
+    @ColumnInfo(name = "user_creator_id") val userCreatorId: Int?,
     @ColumnInfo(name = "address") val address: String?,
     @ColumnInfo(name = "start_date_Time") val startDateTime: LocalDateTime?,
     @ColumnInfo(name = "end_date_Time") val endDateTime: LocalDateTime?,
@@ -20,4 +20,8 @@ data class Rental(
     @Ignore val endDate: LocalDate?,
     @Ignore val startTime: LocalTime?,
     @Ignore val endTime: LocalTime?
-)
+){
+    constructor(rentalId: Int,userCreatorId: Int?,address: String?,
+                startDateTime: LocalDateTime?,endDateTime: LocalDateTime?) :
+            this(rentalId, userCreatorId, address,startDateTime,  endDateTime, null, null,null,null)
+}
