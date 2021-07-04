@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  */
 @Dao
 interface RentalDao {
-    @Query("SELECT * FROM rentals ORDER BY start_date")
+    @Query("SELECT * FROM rentals ORDER BY start_date_Time")
     fun getRentals(): Flow<List<Rental>>
 
     @Query("SELECT * FROM rentals WHERE rental_id = :rentalId")

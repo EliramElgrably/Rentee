@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.databinding.FragmentItemsUploadListBinding
-import com.example.rentee.ui.home.NewRentalAddressFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UploadedItemsListFragment : Fragment() {
     private lateinit var binding: FragmentItemsUploadListBinding
     private val uploadedItemsListViewModel: UploadedItemsListViewModel by viewModels()
@@ -25,11 +26,21 @@ class UploadedItemsListFragment : Fragment() {
         // LiveData needs the lifecycle owner
         binding.lifecycleOwner = this
 
+        val adapter = UploadedItemListAdapter()
+        binding.uploadedItemsList.adapter = adapter
+
         binding.fabUploadItem.setOnClickListener(View.OnClickListener {
             navigateToNewUploadItemPage()
         })
 
+        subscribeUi(adapter)
         return binding.root
+    }
+
+    private fun subscribeUi(adapter: UploadedItemListAdapter) {
+        uploadedItemsListViewModel.itemsList.observe(viewLifecycleOwner) { result ->
+            adapter.submitList(result)
+        }
     }
 
     private fun navigateToNewUploadItemPage() {

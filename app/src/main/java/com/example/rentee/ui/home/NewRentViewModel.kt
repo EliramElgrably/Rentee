@@ -23,7 +23,7 @@ class NewRentViewModel : ViewModel() {
 
     fun setAddress(address: String) {
         val rental: Rental = Rental(
-            null, null, address, null, null, null, null,
+            0, null, address, null, null, null, null,
             null, null
         )
         _newRental.value = rental
@@ -36,7 +36,7 @@ class NewRentViewModel : ViewModel() {
         val localDateEnd: LocalDate = convertLongToLT(dates.second)
 
         _newRental.value = Rental(
-            null, null, newRental.value?.address,
+            0, null, newRental.value?.address,
             null, null, localDateStart, localDateEnd,
             newRental.value?.startTime, newRental.value?.endTime
         )
@@ -50,7 +50,7 @@ class NewRentViewModel : ViewModel() {
             val startTime: LocalTime = LocalTime.of(hour, minutes)
 
             _newRental.value = Rental(
-                null, null, newRental.value?.address,
+                0, null, newRental.value?.address,
                 null, null, newRental.value?.startDate, newRental.value?.endDate,
                 startTime, newRental.value?.endTime
             )
@@ -58,7 +58,7 @@ class NewRentViewModel : ViewModel() {
             val endTime: LocalTime = LocalTime.of(hour, minutes)
 
             _newRental.value = Rental(
-                null, null, newRental.value?.address,
+                0, null, newRental.value?.address,
                 null, null, newRental.value?.startDate, newRental.value?.endDate,
                 newRental.value?.startTime, endTime
             )

@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.databinding.FragmentUploadNewItemBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UploadNewItemFragment : Fragment() {
     private lateinit var binding: FragmentUploadNewItemBinding
     private val uploadNewItemViewModel: UploadNewItemViewModel by viewModels()
@@ -44,6 +46,10 @@ class UploadNewItemFragment : Fragment() {
 
         binding.ivItemImage.setOnClickListener(View.OnClickListener {
             takePic()
+        })
+
+        binding.btnUploadItem.setOnClickListener(View.OnClickListener {
+            uploadNewItemViewModel.uploadItem(binding.etDescription.text.toString())
         })
 
         return binding.root

@@ -9,7 +9,7 @@ interface ItemDao {
     fun getItems(): Flow<List<Item>>
 
     @Query("SELECT * FROM items WHERE item_id = :itemId")
-    fun getItemById(itemId: String): Flow<Item>
+    fun getItemById(itemId: Int): Flow<Item>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<Item>)
@@ -21,7 +21,7 @@ interface ItemDao {
     suspend fun deleteAllItems()
 
     @Query("DELETE FROM items WHERE item_id = :itemId")
-    suspend fun deleteItemById(itemId: String)
+    suspend fun deleteItemById(itemId: Int)
 
     @Delete
     suspend fun deleteItem(item: Item)

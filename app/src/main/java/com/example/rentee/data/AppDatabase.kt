@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.rentee.utilities.DATABASE_NAME
 
-@Database(entities = [User::class, Rental::class, Item::class], version = 1)
+@Database(entities = [User::class, Rental::class, Item::class], version =7)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
@@ -38,7 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
 //                            WorkManager.getInstance(context).enqueue(request)
                         }
                     }
-                )
+                ).fallbackToDestructiveMigration()
                 .build()
         }
     }
