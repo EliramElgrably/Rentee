@@ -20,13 +20,26 @@ class UploadNewItemViewModel @Inject constructor(
     val newItem: LiveData<Item>
         get() = _newItem
 
+    private val _isUploaded = MutableLiveData<Boolean>(false)
+
+    val isUploaded: LiveData<Boolean>
+        get() = _isUploaded
+
 
     fun uploadItem(description: String) {
-        val item: Item = Item(0, null, description)
+        val item: Item = Item(" ", null, description)
         _newItem.value = item
 
+        launchDataLoad {  itemRepository.insert(_newItem.value!!)}
+    }
+
+    private fun launchDataLoad(block: suspend () -> Unit): Unit {
         viewModelScope.launch {
-            itemRepository.insert(_newItem.value!!)
+            try {
+                block()
+            } finally {
+                _isUploaded.value = true
+            }
         }
     }
 }

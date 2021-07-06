@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.databinding.FragmentUploadNewItemBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,7 @@ class UploadNewItemFragment : Fragment() {
 
 
         binding.ivClose.setOnClickListener {
-            onCloseClicked()
+            navigateUp()
         }
 
         binding.ivItemImage.setOnClickListener(View.OnClickListener {
@@ -52,6 +53,12 @@ class UploadNewItemFragment : Fragment() {
             uploadNewItemViewModel.uploadItem(binding.etDescription.text.toString())
         })
 
+        uploadNewItemViewModel.isUploaded.observe(viewLifecycleOwner, Observer {
+            if(it){
+                navigateUp()
+            }
+
+        })
         return binding.root
     }
 
@@ -69,7 +76,7 @@ class UploadNewItemFragment : Fragment() {
         binding.ivItemImage.setImageBitmap(imageBitmap)
     }
 
-    private fun onCloseClicked() {
+    private fun navigateUp() {
         findNavController().navigateUp()
     }
 }

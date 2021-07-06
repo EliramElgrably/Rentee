@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "items")
 data class Item(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "item_id") val itemId: Int = 0,
+    @PrimaryKey @ColumnInfo(name = "item_id") var itemId: String = " ",
     @ColumnInfo(name = "rental_related_id") val userCreatorId: Int?,
-    @ColumnInfo(name = "name") val name: String,
-)
+    @ColumnInfo(name = "name") val name: String?,
+) {
+    constructor() : this(" ",null, null)
+}
