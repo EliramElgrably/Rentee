@@ -1,5 +1,6 @@
 package com.example.rentee.ui.uploadedItems
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,11 +27,11 @@ class UploadNewItemViewModel @Inject constructor(
         get() = _isUploaded
 
 
-    fun uploadItem(description: String) {
-        val item: Item = Item(" ", null, description)
+    fun uploadItem(bitmap: Bitmap, description: String) {
+        val item: Item = Item(" ", null, description, null)
         _newItem.value = item
 
-        launchDataLoad {  itemRepository.insert(_newItem.value!!)}
+        launchDataLoad {  itemRepository.insert(bitmap, _newItem.value!!)}
     }
 
     private fun launchDataLoad(block: suspend () -> Unit): Unit {

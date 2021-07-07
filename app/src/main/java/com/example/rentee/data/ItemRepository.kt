@@ -1,5 +1,6 @@
 package com.example.rentee.data
 
+import android.graphics.Bitmap
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,10 +24,20 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    suspend fun insert(item: Item) {
-        modelFirebase.uploadNewItemSuspendAwait(item).let {
-            if (it) {
-                refreshItemsList()
+    //suspend fun uploadItemImage()
+
+    // Todo:remove android's Bitmap
+    suspend fun insert(bitmap: Bitmap, item: Item) {
+        modelFirebase.uploadNewItemSuspendAwait(item).let { itemDocId ->
+            if (itemDocId != null) {
+                modelFirebase.uploadImage(itemDocId, bitmap).let {itemImageUrl ->
+                    if(itemImageUrl != null){
+                        item.url = itemImageUrl
+                        item.itemId = itemDocId
+
+                        modelFirebase.updateItemSuspendAwait(item)
+                    }
+                    refreshItemsList()}
             }
         }
 

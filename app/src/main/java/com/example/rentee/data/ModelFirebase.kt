@@ -1,10 +1,13 @@
 package com.example.rentee.data
 
+import android.graphics.Bitmap
 import android.util.Log
 import com.example.rentee.utilities.FIREBASE_ITEM_COLLECTION
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,15 +18,31 @@ class ModelFirebase @Inject constructor() {
 
 
     //////////////////////// suspended methods ////////////////////////////////////////////////////
-    suspend fun uploadNewItemSuspendAwait(item: Item): Boolean {
-        var retVal = true
+    suspend fun uploadNewItemSuspendAwait(item: Item): String? {
+        var retVal: String? = null
 
         try {
-            Firebase.firestore
+            val documentRef = Firebase.firestore
                 .collection(FIREBASE_ITEM_COLLECTION)
                 .add(item)
                 .await()
+            retVal = documentRef.id
         } catch (e: Exception) {
+            // TODO:exception
+        }
+
+        return retVal
+    }
+
+    suspend fun updateItemSuspendAwait(item: Item): Boolean {
+        var retVal= true
+
+        try {
+            Firebase.firestore
+                .collection(FIREBASE_ITEM_COLLECTION).document(item.itemId).set(item)
+                .await()
+        } catch (e: Exception) {
+            // TODO:exception
             retVal = false
         }
 
@@ -51,7 +70,47 @@ class ModelFirebase @Inject constructor() {
         return itemsList
     }
 
-//        suspend fun uploadImage(): ArrayList<Item> {
+    suspend fun uploadImage(itemId : String, bitmap: Bitmap): String? {
+        // Get the data from an ImageView as bytes
+//        imageView.isDrawingCacheEnabled = true
+//        imageView.buildDrawingCache()
+//        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+
+        var retVal: String? = null
+
+        // Create a storage reference from our app
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
+        val mountainsRef = storageRef.child("item images").child(itemId)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        try {
+            var uploadTask = mountainsRef.putBytes(data)
+            uploadTask.await()
+
+            val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                mountainsRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                     retVal = task.result.toString()
+                } else {
+                    // TODO:exception
+                }
+            }.await()
+        } catch (e: Exception) {
+            Log.w(TAG, "Error getting item documents: ", e)
+        } finally {
+        }
+
+        return retVal
+    }
 
 
     /////////// Not suspended methods - in this case we should make a IO dispatcher/////////////

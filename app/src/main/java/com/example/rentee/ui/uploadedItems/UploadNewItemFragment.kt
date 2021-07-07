@@ -3,6 +3,7 @@ package com.example.rentee.ui.uploadedItems;
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -50,7 +51,8 @@ class UploadNewItemFragment : Fragment() {
         })
 
         binding.btnUploadItem.setOnClickListener(View.OnClickListener {
-            uploadNewItemViewModel.uploadItem(binding.etDescription.text.toString())
+            val bitmap = (binding.ivItemImage.drawable as BitmapDrawable).bitmap
+            uploadNewItemViewModel.uploadItem(bitmap, binding.etDescription.text.toString())
         })
 
         uploadNewItemViewModel.isUploaded.observe(viewLifecycleOwner, Observer {

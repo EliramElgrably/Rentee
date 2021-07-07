@@ -1,19 +1,24 @@
 package com.example.rentee.ui.uploadedItems
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rentee.R
 import com.example.rentee.data.Item
+import com.example.rentee.databinding.ListItemUploadBinding
 
-class UploadedItemListAdapter: ListAdapter<Item, UploadedItemListAdapter.ItemViewHolder>(WORDS_COMPARATOR) {
+class UploadedItemListAdapter :
+    ListAdapter<Item, UploadedItemListAdapter.ItemViewHolder>(WORDS_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder.create(parent)
+        return ItemViewHolder(
+            ListItemUploadBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -21,18 +26,48 @@ class UploadedItemListAdapter: ListAdapter<Item, UploadedItemListAdapter.ItemVie
         holder.bind(current)
     }
 
-    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val wordItemView: TextView = itemView.findViewById(R.id.tv_item_title)
+//    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        private val wordItemView: TextView = itemView.findViewById(R.id.tv_item_title)
+//
+//        fun bind(item: Item) {
+//            wordItemView.text = item.name
+//        }
+//
+//        companion object {
+//            fun create(parent: ViewGroup): ItemViewHolder {
+//                val view: View = LayoutInflater.from(parent.context)
+//                    .inflate(R.layout.list_item_upload, parent, false)
+//                return ItemViewHolder(view)
+//            }
+//        }
+//    }
 
-        fun bind(item: Item) {
-            wordItemView.text = item.name
+    class ItemViewHolder(
+        private val binding: ListItemUploadBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.setClickListener {
+//                binding.plant?.let { plant ->
+//                    navigateToPlant(plant, it)
+//                }
+            }
         }
 
-        companion object {
-            fun create(parent: ViewGroup): ItemViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_upload, parent, false)
-                return ItemViewHolder(view)
+//        private fun navigateToPlant(
+//            plant: Plant,
+//            view: View
+//        ) {
+//            val direction =
+//                HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(
+//                    plant.plantId
+//                )
+//            view.findNavController().navigate(direction)
+//        }
+
+        fun bind(itemToBind: Item) {
+            binding.apply {
+                item = itemToBind
+                executePendingBindings()
             }
         }
     }

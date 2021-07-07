@@ -9,6 +9,7 @@ data class Item(
     @PrimaryKey @ColumnInfo(name = "item_id") var itemId: String = " ",
     @ColumnInfo(name = "rental_related_id") val userCreatorId: Int?,
     @ColumnInfo(name = "name") val name: String?,
+    @ColumnInfo(name = "image_url") var url: String?,
 ) {
-    constructor() : this(" ",null, null)
+    constructor() : this(" ",null, null, null)
 }
