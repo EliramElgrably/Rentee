@@ -28,7 +28,7 @@ class UploadNewItemViewModel @Inject constructor(
 
 
     fun uploadItem(bitmap: Bitmap, description: String) {
-        val item: Item = Item(" ", null, description, null)
+        val item: Item = Item(" ", null, description, null, null)
         _newItem.value = item
 
         launchDataLoad {  itemRepository.insert(bitmap, _newItem.value!!)}

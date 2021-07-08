@@ -24,8 +24,6 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    //suspend fun uploadItemImage()
-
     // Todo:remove android's Bitmap
     suspend fun insert(bitmap: Bitmap, item: Item) {
         modelFirebase.uploadNewItemSuspendAwait(item).let { itemDocId ->
@@ -37,6 +35,8 @@ class ItemRepository @Inject constructor(
 
                         modelFirebase.updateItemSuspendAwait(item)
                     }
+
+                    // Todo: find a way to sync smartly the list after adding a document
                     refreshItemsList()}
             }
         }
