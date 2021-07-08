@@ -7,13 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.rentee.R
+import com.example.rentee.NavGraphDirections
 import com.example.rentee.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+
+    // Firebase instance variables
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +33,14 @@ class HomeFragment : Fragment() {
 
         // LiveData needs the lifecycle owner
         binding.lifecycleOwner = this
+
+        // Initialize Firebase Auth and check if the user is signed in
+        auth = Firebase.auth
+        if (auth.currentUser == null) {
+            val direction =
+                NavGraphDirections.actionGlobalFragmentSignIn()
+            findNavController().navigate(direction)
+        }
 
         binding.btnStartOrder.setOnClickListener(View.OnClickListener {
             val direction =
