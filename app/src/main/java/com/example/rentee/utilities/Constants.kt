@@ -5,4 +5,5 @@ package com.example.rentee.utilities
  */
 const val DATABASE_NAME = "rentee-db"
 const val FIREBASE_ITEM_COLLECTION = "items"
+const val FIREBASE_USER_COLLECTION = "user"
 const val DAY_IN_MILLI: Long = 86400000

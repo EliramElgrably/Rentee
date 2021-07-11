@@ -10,18 +10,18 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.R
 import com.example.rentee.databinding.FragmentSignInBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class SignInFragment : Fragment() {
-    //private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentSignInBinding
+    private val signInViewModel: SignInViewModel by activityViewModels()
     private val signIn: ActivityResultLauncher<Intent> =
         registerForActivityResult(FirebaseAuthUIActivityResultContract(), this::onSignInResult)
 
@@ -33,15 +33,9 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
 
 
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         // If there is no signed in user, launch FirebaseUI
         // Otherwise head to MainActivity
-        if (Firebase.auth.currentUser == null) {
+        if (signInViewModel.user.value == null) {
             // Sign in with FirebaseUI, see docs for more details:
             // https://firebase.google.com/docs/auth/android/firebaseui
             val signInIntent = AuthUI.getInstance()
@@ -56,15 +50,25 @@ class SignInFragment : Fragment() {
                 .build()
 
             signIn.launch(signInIntent)
+
+            signInViewModel.user.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    goToHomeFragment()
+                }
+            })
         } else {
             goToHomeFragment()
         }
+
+        return binding.root
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             Log.d(TAG, "Sign in successful!")
-            goToHomeFragment()
+
+            signInViewModel.setUserInfo()
+
         } else {
             Toast.makeText(
                 context,
@@ -78,6 +82,8 @@ class SignInFragment : Fragment() {
             } else {
                 Log.w(TAG, "Sign in error", response.error)
             }
+
+            goToHomeFragment()
         }
     }
 

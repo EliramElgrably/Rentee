@@ -3,6 +3,7 @@ package com.example.rentee.data
 import android.graphics.Bitmap
 import android.util.Log
 import com.example.rentee.utilities.FIREBASE_ITEM_COLLECTION
+import com.example.rentee.utilities.FIREBASE_USER_COLLECTION
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -27,6 +28,23 @@ class ModelFirebase @Inject constructor() {
                 .add(item)
                 .await()
             retVal = documentRef.id
+        } catch (e: Exception) {
+            // TODO:exception
+        }
+
+        return retVal
+    }
+
+    // Todo: make gerneric methods for set and update
+    suspend fun uploadNewUserSuspendAwait(user: User): Boolean{
+        var retVal = false
+
+        try {
+            val documentRef = Firebase.firestore
+                .collection(FIREBASE_USER_COLLECTION).document(user.userId)
+                .set(user)
+                .await()
+            retVal = true
         } catch (e: Exception) {
             // TODO:exception
         }
