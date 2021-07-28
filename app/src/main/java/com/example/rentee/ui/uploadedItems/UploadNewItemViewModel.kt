@@ -1,18 +1,21 @@
 package com.example.rentee.ui.uploadedItems
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rentee.data.Item
 import com.example.rentee.data.ItemRepository
+import com.example.rentee.data.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UploadNewItemViewModel @Inject constructor(
-    private val itemRepository: ItemRepository
+    private val itemRepository: ItemRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _newItem = MutableLiveData<Item>()
@@ -20,13 +23,28 @@ class UploadNewItemViewModel @Inject constructor(
     val newItem: LiveData<Item>
         get() = _newItem
 
+    private val _isUploaded = MutableLiveData<Boolean>(false)
 
-    fun uploadItem(description: String) {
-        val item: Item = Item(0, null, description)
-        _newItem.value = item
+    val isUploaded: LiveData<Boolean>
+        get() = _isUploaded
 
+
+    fun uploadItem(bitmap: Bitmap, description: String) {
+        userRepository.user.value?.let {
+            val item: Item = Item(" ", it.userId, description, null, null)
+            _newItem.value = item
+
+            launchDataLoad {  itemRepository.insert(bitmap, _newItem.value!!)}
+        }
+    }
+
+    private fun launchDataLoad(block: suspend () -> Unit): Unit {
         viewModelScope.launch {
-            itemRepository.insert(_newItem.value!!)
+            try {
+                block()
+            } finally {
+                _isUploaded.value = true
+            }
         }
     }
 }

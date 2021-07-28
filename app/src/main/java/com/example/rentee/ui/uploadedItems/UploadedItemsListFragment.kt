@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.rentee.databinding.FragmentItemsUploadListBinding
+import com.example.rentee.databinding.FragmentUploadItemsListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UploadedItemsListFragment : Fragment() {
-    private lateinit var binding: FragmentItemsUploadListBinding
+    private lateinit var binding: FragmentUploadItemsListBinding
     private val uploadedItemsListViewModel: UploadedItemsListViewModel by viewModels()
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class UploadedItemsListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentItemsUploadListBinding.inflate(inflater, container, false)
+        binding = FragmentUploadItemsListBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
         // LiveData needs the lifecycle owner
@@ -34,6 +34,7 @@ class UploadedItemsListFragment : Fragment() {
         })
 
         subscribeUi(adapter)
+
         return binding.root
     }
 

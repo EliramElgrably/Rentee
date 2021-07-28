@@ -4,12 +4,19 @@ import androidx.core.util.Pair
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.rentee.data.ItemRepository
 import com.example.rentee.data.Rental
+import com.example.rentee.data.UserRepository
 import com.example.rentee.utilities.convertLongToLT
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import java.time.LocalTime
+import javax.inject.Inject
 
-class NewRentViewModel : ViewModel() {
+@HiltViewModel
+class NewRentViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     private val _newRental = MutableLiveData<Rental>()
 
@@ -36,7 +43,7 @@ class NewRentViewModel : ViewModel() {
         val localDateEnd: LocalDate = convertLongToLT(dates.second)
 
         _newRental.value = Rental(
-            0, null, newRental.value?.address,
+            0, userRepository.user.value?.userId, newRental.value?.address,
             null, null, localDateStart, localDateEnd,
             newRental.value?.startTime, newRental.value?.endTime
         )

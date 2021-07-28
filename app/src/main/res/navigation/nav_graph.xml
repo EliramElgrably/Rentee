@@ -5,10 +5,26 @@
     android:id="@+id/nav_graph"
     app:startDestination="@+id/home">
 
-    <include app:graph="@navigation/home"/>
 
-    <include app:graph="@navigation/my_items"/>
+    <include app:graph="@navigation/home" />
 
-    <include app:graph="@navigation/notifications"/>
+    <include app:graph="@navigation/my_items" />
+
+    <include app:graph="@navigation/notifications" />
+
+    <fragment
+        android:id="@+id/fragment_sign_in"
+        android:name="com.example.rentee.ui.signIn.SignInFragment"
+        android:label="@string/sign_in"
+        tools:layout="@layout/fragment_sign_in">
+
+        <action
+            android:id="@+id/action_fragment_sign_in_to_home"
+            app:destination="@id/home" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_fragment_sign_in"
+        app:destination="@id/fragment_sign_in" />
 
 </navigation>

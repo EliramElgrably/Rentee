@@ -5,15 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.rentee.R
+import com.example.rentee.NavGraphDirections
 import com.example.rentee.databinding.FragmentHomeBinding
+import com.example.rentee.ui.signIn.SignInViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+    private val signInViewModel: SignInViewModel by activityViewModels()
+
+    // Firebase instance variables
+    //private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +35,16 @@ class HomeFragment : Fragment() {
         // LiveData needs the lifecycle owner
         binding.lifecycleOwner = this
 
+        signInViewModel.user.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
+                goToSignInPage()
+            }
+        })
+
+//        if (signInViewModel.user.value == null) {
+//            goToSignInPage()
+//        }
+
         binding.btnStartOrder.setOnClickListener(View.OnClickListener {
             val direction =
                 HomeFragmentDirections.actionNavigationHomeToNavigationNewRentAddress()
@@ -39,6 +56,12 @@ class HomeFragment : Fragment() {
 //            binding.textHome.text = it
 //        })
         return binding.root
+    }
+
+    private fun goToSignInPage() {
+        val direction =
+            NavGraphDirections.actionGlobalFragmentSignIn()
+        findNavController().navigate(direction)
     }
 
 }

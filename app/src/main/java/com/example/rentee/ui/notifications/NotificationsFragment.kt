@@ -4,28 +4,54 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.rentee.R
+import androidx.navigation.fragment.findNavController
+import com.example.rentee.NavGraphDirections
+import com.example.rentee.databinding.FragmentNotificationsBinding
+import com.example.rentee.ui.signIn.SignInViewModel
+import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.OnCompleteListener
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private val notificationsViewModel: NotificationsViewModel by viewModels()
+    private val signInViewModel: SignInViewModel by activityViewModels()
+    private lateinit var binding: FragmentNotificationsBinding
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+
+        binding.btnSignOut.setOnClickListener(View.OnClickListener {
+            signOut()
         })
-        return root
+
+        signInViewModel.user.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
+                goToHomeFragment()
+            }
+        })
+        return binding.root
+    }
+
+    private fun signOut() {
+        context?.let {
+            AuthUI.getInstance().signOut(it).addOnCompleteListener(OnCompleteListener {
+
+                signInViewModel.signOut()
+            })
+        }
+    }
+
+    private fun goToHomeFragment() {
+        val direction =
+            NavGraphDirections.actionGlobalFragmentSignIn()
+        findNavController().navigate(direction)
     }
 }

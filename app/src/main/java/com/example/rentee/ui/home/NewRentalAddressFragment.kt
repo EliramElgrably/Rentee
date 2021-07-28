@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.rentee.R
 import com.example.rentee.databinding.FragmentNewRentAddressBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewRentalAddressFragment : Fragment(), NewRentalInterface {
 
     private lateinit var binding: FragmentNewRentAddressBinding
