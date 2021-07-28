@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.rentee.data.ItemRepository
 import com.example.rentee.data.User
 import com.example.rentee.data.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,10 +13,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val itemRepository: ItemRepository,
 ) : ViewModel() {
 
-    var user: LiveData<User?> = userRepository.user.asLiveData()
+    var user: LiveData<User?> = userRepository.user
 
     init {
         viewModelScope.launch {
@@ -29,7 +31,10 @@ class SignInViewModel @Inject constructor(
 
     fun signOut() {
         //Updating the repository
-        launchDataLoad { userRepository.deleteUser() }
+        launchDataLoad {
+            userRepository.deleteUser()
+            itemRepository.deleteAllItems()
+        }
     }
 
     fun setUserInfo() {

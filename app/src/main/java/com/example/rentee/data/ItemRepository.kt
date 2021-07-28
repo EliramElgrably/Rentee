@@ -8,13 +8,14 @@ import javax.inject.Singleton
 @Singleton
 class ItemRepository @Inject constructor(
     private val itemDao: ItemDao,
-    private val modelFirebase: ModelFirebase
+    private val modelFirebase: ModelFirebase,
+    private val userRepository: UserRepository
 ) {
     val allItems: Flow<List<Item>> = itemDao.getItems()
 
     suspend fun refreshItemsList() {
         try {
-            val networkListItems: ArrayList<Item> = modelFirebase.getAllItemsSuspendAwait()
+            val networkListItems: ArrayList<Item> = modelFirebase.getAllItemsSuspendAwait(userRepository.user.value?.userId)
 
             if (networkListItems.isNotEmpty()) {
                 itemDao.insertAll(networkListItems)
@@ -41,6 +42,10 @@ class ItemRepository @Inject constructor(
             }
         }
 
+    }
+
+    suspend fun deleteAllItems(){
+        itemDao.deleteAllItems()
     }
 
     /**

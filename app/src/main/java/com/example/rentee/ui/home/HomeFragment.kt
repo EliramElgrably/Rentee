@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.NavGraphDirections
 import com.example.rentee.databinding.FragmentHomeBinding
@@ -34,9 +35,15 @@ class HomeFragment : Fragment() {
         // LiveData needs the lifecycle owner
         binding.lifecycleOwner = this
 
-        if (signInViewModel.user.value == null) {
-            goToSignInPage()
-        }
+        signInViewModel.user.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
+                goToSignInPage()
+            }
+        })
+
+//        if (signInViewModel.user.value == null) {
+//            goToSignInPage()
+//        }
 
         binding.btnStartOrder.setOnClickListener(View.OnClickListener {
             val direction =

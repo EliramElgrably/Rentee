@@ -7,7 +7,7 @@ data class RentalWithItems(
     @Embedded val rental: Rental,
     @Relation(
         parentColumn = "rental_id",
-        entityColumn = "rental_related_id"
+        entityColumn = "item_id"
     )
     val items: List<Item>
 )

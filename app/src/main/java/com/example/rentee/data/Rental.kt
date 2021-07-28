@@ -12,7 +12,7 @@ import java.time.LocalTime
 data class Rental constructor(
     @PrimaryKey
     @ColumnInfo(name = "rental_id") val rentalId: Int,
-    @ColumnInfo(name = "user_creator_id") val userCreatorId: Int?,
+    @ColumnInfo(name = "user_creator_id") val userCreatorId: String?,
     @ColumnInfo(name = "address") val address: String?,
     @ColumnInfo(name = "start_date_Time") val startDateTime: LocalDateTime?,
     @ColumnInfo(name = "end_date_Time") val endDateTime: LocalDateTime?,
@@ -21,7 +21,7 @@ data class Rental constructor(
     @Ignore val startTime: LocalTime?,
     @Ignore val endTime: LocalTime?
 ){
-    constructor(rentalId: Int,userCreatorId: Int?,address: String?,
+    constructor(rentalId: Int,userCreatorId: String?,address: String?,
                 startDateTime: LocalDateTime?,endDateTime: LocalDateTime?) :
             this(rentalId, userCreatorId, address,startDateTime,  endDateTime, null, null,null,null)
 }

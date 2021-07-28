@@ -1,5 +1,7 @@
 package com.example.rentee.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -13,18 +15,14 @@ class UserRepository @Inject constructor(
     private val userDao: UserDao,
     private val modelFirebase: ModelFirebase
 ) {
-    val user: Flow<User> = userDao.getUser()
+    val user: LiveData<User?> = userDao.getUser().asLiveData()
 
-    suspend fun getUserCheck(): Flow<User> {
-        var retVal: User
-
+    suspend fun getUserCheck(){
         if (Firebase.auth.currentUser == null) {
             deleteUser()
         } else {
             insertCurrentUser()
         }
-
-        return user
     }
 
     suspend fun insertCurrentUser() {

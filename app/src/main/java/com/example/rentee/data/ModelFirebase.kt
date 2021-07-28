@@ -67,12 +67,12 @@ class ModelFirebase @Inject constructor() {
         return retVal
     }
 
-    suspend fun getAllItemsSuspendAwait(): ArrayList<Item> {
+    suspend fun getAllItemsSuspendAwait(userId: String?): ArrayList<Item> {
         val itemsList = ArrayList<Item>()
 
         try {
             val documents = Firebase.firestore
-                .collection(FIREBASE_ITEM_COLLECTION)
+                .collection(FIREBASE_ITEM_COLLECTION).whereEqualTo("userId" ,userId)
                 .get()
                 .await()
 
