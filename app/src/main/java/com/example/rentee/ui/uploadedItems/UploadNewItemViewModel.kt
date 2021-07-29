@@ -29,6 +29,16 @@ class UploadNewItemViewModel @Inject constructor(
         get() = _isUploaded
 
 
+    private val _spinner = MutableLiveData<Boolean>(false)
+
+    /**
+     * Show a loading spinner if true
+     */
+    val spinner: LiveData<Boolean>
+        get() = _spinner
+
+
+
     fun uploadItem(bitmap: Bitmap, description: String) {
         userRepository.user.value?.let {
             val item: Item = Item(" ", it.userId, description, null, null)
@@ -41,8 +51,10 @@ class UploadNewItemViewModel @Inject constructor(
     private fun launchDataLoad(block: suspend () -> Unit): Unit {
         viewModelScope.launch {
             try {
+                _spinner.value = true
                 block()
             } finally {
+                _spinner.value = false
                 _isUploaded.value = true
             }
         }
