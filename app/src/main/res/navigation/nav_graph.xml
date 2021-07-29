@@ -10,7 +10,7 @@
 
     <include app:graph="@navigation/my_items" />
 
-    <include app:graph="@navigation/notifications" />
+    <include app:graph="@navigation/settings" />
 
     <fragment
         android:id="@+id/fragment_sign_in"

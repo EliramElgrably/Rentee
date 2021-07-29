@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.example.rentee.utilities.FIREBASE_ITEM_COLLECTION
 import com.example.rentee.utilities.FIREBASE_USER_COLLECTION
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -161,6 +162,10 @@ class ModelFirebase @Inject constructor() {
 
         return retVal
     }
-    //}
+
+
+    fun isUserConnectedToFirebase(): Boolean{
+        return Firebase.auth.currentUser != null
+    }
 
 }

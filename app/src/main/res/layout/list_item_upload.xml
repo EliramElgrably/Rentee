@@ -28,7 +28,7 @@
 
             <ImageView
                 android:id="@+id/iv_uploaded_item"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="140dp"
                 android:scaleType="fitCenter"
                 app:imageFromUrl="@{item.url}"
@@ -49,6 +49,18 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_start"
