@@ -1,4 +1,4 @@
-package com.example.rentee.ui.notifications
+package com.example.rentee.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,23 +10,23 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.rentee.NavGraphDirections
-import com.example.rentee.databinding.FragmentNotificationsBinding
+import com.example.rentee.databinding.FragmentSettingsBinding
 import com.example.rentee.ui.signIn.SignInViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.OnCompleteListener
 
-class NotificationsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private val notificationsViewModel: NotificationsViewModel by viewModels()
+    private val settingsViewModel: SettingsViewModel by viewModels()
     private val signInViewModel: SignInViewModel by activityViewModels()
-    private lateinit var binding: FragmentNotificationsBinding
+    private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding.btnSignOut.setOnClickListener(View.OnClickListener {
             signOut()

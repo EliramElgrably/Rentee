@@ -4,7 +4,7 @@
     <string name="sign_in">התחברות</string>
     <string name="title_home">בית</string>
     <string name="title_dashboard">דשבורד</string>
-    <string name="title_notifications">הודעות</string>
+    <string name="title_settings">הגדרות</string>
 
     /////////////////////////////////////// Home page ////////////////////////////////////////////
     // Address fragment

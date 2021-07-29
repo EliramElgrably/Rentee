@@ -61,6 +61,16 @@ class UploadNewItemFragment : Fragment() {
             }
 
         })
+
+        uploadNewItemViewModel.spinner.observe(viewLifecycleOwner, Observer {
+            if(it){
+                binding.spinner.visibility = View.VISIBLE
+            }else{
+                binding.spinner.visibility = View.GONE
+            }
+
+        })
+
         return binding.root
     }
 

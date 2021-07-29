@@ -2,11 +2,6 @@ package com.example.rentee.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,8 +12,8 @@ class UserRepository @Inject constructor(
 ) {
     val user: LiveData<User?> = userDao.getUser().asLiveData()
 
-    suspend fun getUserCheck(){
-        if (Firebase.auth.currentUser == null) {
+    suspend fun getUserCheck() {
+        if (modelFirebase.isUserConnectedToFirebase() == null) {
             deleteUser()
         } else {
             insertCurrentUser()
@@ -27,7 +22,8 @@ class UserRepository @Inject constructor(
 
     suspend fun insertCurrentUser() {
         var user: User?
-        FirebaseAuth.getInstance().currentUser?.let {
+
+        modelFirebase.isUserConnectedToFirebase()?.let {
             user =
                 User(
                     it.uid,

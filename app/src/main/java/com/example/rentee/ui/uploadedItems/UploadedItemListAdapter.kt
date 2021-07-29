@@ -26,22 +26,6 @@ class UploadedItemListAdapter :
         holder.bind(current)
     }
 
-//    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        private val wordItemView: TextView = itemView.findViewById(R.id.tv_item_title)
-//
-//        fun bind(item: Item) {
-//            wordItemView.text = item.name
-//        }
-//
-//        companion object {
-//            fun create(parent: ViewGroup): ItemViewHolder {
-//                val view: View = LayoutInflater.from(parent.context)
-//                    .inflate(R.layout.list_item_upload, parent, false)
-//                return ItemViewHolder(view)
-//            }
-//        }
-//    }
-
     class ItemViewHolder(
         private val binding: ListItemUploadBinding
     ) : RecyclerView.ViewHolder(binding.root) {

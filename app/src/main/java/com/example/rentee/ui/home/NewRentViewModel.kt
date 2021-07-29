@@ -13,9 +13,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import javax.inject.Inject
 
-@HiltViewModel
-class NewRentViewModel @Inject constructor(
-    private val userRepository: UserRepository
+class NewRentViewModel (
 ) : ViewModel() {
 
     private val _newRental = MutableLiveData<Rental>()
@@ -43,7 +41,7 @@ class NewRentViewModel @Inject constructor(
         val localDateEnd: LocalDate = convertLongToLT(dates.second)
 
         _newRental.value = Rental(
-            0, userRepository.user.value?.userId, newRental.value?.address,
+            0, "stam", newRental.value?.address,
             null, null, localDateStart, localDateEnd,
             newRental.value?.startTime, newRental.value?.endTime
         )
